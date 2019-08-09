@@ -5,6 +5,9 @@
 
 You can find all the pednames here, https://wiki.rage.mp/index.php?title=Peds
 
+# How to use it?
+Type */pedchange* in the chat.
+
 ## Requirements
 esx_menu_default<br />
 
