@@ -13,18 +13,18 @@ function OpenPedMenu()
 	ESX.UI.Menu.CloseAll()
 
 	ESX.UI.Menu.Open(
-		'default', GetCurrentResourceName(), 'pedmeny',
+		'default', GetCurrentResourceName(), 'pedmenu',
 		{
-		  title    = 'Ped meny',
+		  title    = 'Ped-menu',
 		  align    = 'right',
 		  elements = {
-			  {label = 'Vanlig karaktär', value = 'vanlig'}, {label = 'Välj en ped', value = 'ped'}
+			  {label = 'Civilian outfit', value = 'civilian'}, {label = 'Choose a ped', value = 'ped'}
 		  }
 		},
 
 		function(data, menu)
 			
-			if data.current.value == 'vanlig' then
+			if data.current.value == 'civilian' then
 				ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
 					local model = nil
 					
@@ -51,19 +51,19 @@ function OpenPedMenu()
 			if data.current.value == 'ped' then
 				menu.close()
 
-				ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'valjenped', {
-					title = 'Ange ped-namnet'
+				ESX.UI.Menu.Open('dialog', GetCurrentResourceName(), 'chooseaped', {
+					title = 'Which ped do you want to be?'
 				}, function(data2, menu2)
 					local ped = data2.value
 	
 					if ped == nil then
 						menu2.close()
 						menu.close()
-						BliPed(ped)
+						BecomePed(ped)
 					else
 						menu2.close()
 						menu.close()
-						BliPed(ped)
+						BecomePed(ped)
 					end
 				end, function(data2, menu2)
 					menu2.close()
@@ -80,7 +80,7 @@ RegisterCommand("pedchange", function(source)
 	OpenPedMenu()
 end, false)
 
-BliPed = function(ped)
+BecomePed = function(ped)
 
 	ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
 		
